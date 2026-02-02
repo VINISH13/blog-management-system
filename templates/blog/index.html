@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Company Blog</title>
+
+<style>
+body{font-family:Arial;background:#f2f4f7;margin:0}
+header{background:#0a2540;color:white;padding:20px;display:flex;justify-content:space-between}
+nav a{color:white;text-decoration:none;margin-left:20px}
+.container{width:85%;margin:auto;margin-top:30px}
+.post{background:white;padding:20px;margin-bottom:20px;border-radius:10px}
+.post img{width:100%;max-height:250px;object-fit:cover}
+.btn{background:#1f3c88;color:white;padding:8px 16px;text-decoration:none;border-radius:6px}
+.search{text-align:center;margin-bottom:30px}
+.pagination{text-align:center;margin:30px}
+.pagination a{background:#1f3c88;color:white;padding:8px 14px;text-decoration:none;margin:5px;border-radius:5px}
+</style>
+
+</head>
+<body>
+
+<header>
+<h2>My Company</h2>
+<nav>
+<a href="/">Home</a>
+<a href="/blog/">Blog</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- SEARCH -->
+
+<div class="search">
+<form method="GET">
+<input type="text" name="q" placeholder="Search..." value="{{ q|default:'' }}">
+<button type="submit">Search</button>
+</form>
+</div>
+
+<!-- POSTS -->
+
+{% for post in posts %}
+
+<div class="post">
+
+{% if post.image %}
+<img src="{{ post.image.url }}">
+{% endif %}
+
+<h3>{{ post.title }}</h3>
+<p>{{ post.short_description }}</p>
+<b>{{ post.author }}</b><br><br>
+
+<a href="{% url 'post_detail' post.id %}" target="_blank" class="btn">See more</a>
+
+</div>
+
+{% empty %}
+<p>No results found</p>
+{% endfor %}
+
+<!-- PAGINATION -->
+
+<div class="pagination">
+
+{% if posts.has_previous %}
+<a href="?page={{ posts.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Previous</a>
+{% endif %}
+
+<span>Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+
+{% if posts.has_next %}
+<a href="?page={{ posts.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Next</a>
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+</html>

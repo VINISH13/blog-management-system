@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Dashboard</title>
+
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#eef2f7;
+        }
+
+        .container{
+            width:70%;
+            margin:60px auto;
+        }
+
+        h1{
+            color:#1f3c88;
+            margin-bottom:20px;
+        }
+
+        .post{
+            background:white;
+            padding:15px;
+            margin-bottom:15px;
+            border-radius:8px;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .post-info{
+            width:80%;
+        }
+
+        .post-info h3{
+            margin:0;
+            color:#1f3c88;
+        }
+
+        .post-info p{
+            margin:5px 0;
+            color:#444;
+        }
+
+        .delete-btn{
+            background:#e63946;
+            color:white;
+            border:none;
+            padding:8px 14px;
+            border-radius:6px;
+            cursor:pointer;
+            text-decoration:none;
+        }
+
+        .add-btn{
+            display:inline-block;
+            margin-bottom:20px;
+            padding:10px 14px;
+            background:#1f3c88;
+            color:white;
+            border-radius:6px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a class="add-btn" href="/dashboard/add/">+ Add New Post</a>
+
+    <h1>Manage Blog Posts</h1>
+
+    {% for post in posts %}
+        <div class="post">
+            <div class="post-info">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.short_description }}</p>
+                <small>By {{ post.author }}</small>
+            </div>
+
+            <a class="delete-btn" style="background:#1f3c88;" href="/dashboard/edit/{{ post.id }}/">
+    Edit
+</a>
+
+<a class="delete-btn" href="/dashboard/delete/{{ post.id }}/">
+    Delete
+</a>
+        </div>
+    {% empty %}
+        <p>No posts available</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

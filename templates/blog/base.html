@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Company</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background:#f5f7fb;
+        }
+
+        .navbar {
+            background:#0f2a44;
+            padding:15px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            color:white;
+        }
+
+        .nav-links a {
+            color:white;
+            margin-left:20px;
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        .hero {
+            background:#2f3f8f;
+            color:white;
+            padding:80px 0;
+            text-align:center;
+        }
+
+        .container {
+            width:80%;
+            margin:auto;
+            margin-top:40px;
+        }
+
+        .card {
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            margin-bottom:30px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            display:inline-block;
+            background:#2f3f8f;
+            color:white;
+            padding:8px 16px;
+            border-radius:6px;
+            text-decoration:none;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>My Company</h2>
+
+    <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="#">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="#">Contact</a>
+</div>
+</div>
+
+<div class="hero">
+    <h1>Welcome to Our Company</h1>
+    <p>We share updates, news and insights here</p>
+</div>
+
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>
